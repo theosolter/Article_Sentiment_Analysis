@@ -22,7 +22,7 @@
                     <i class="fas fa-globe-americas"></i>
                 </h1>
                 <p>Please select an article from the internet.
-                    <br>Copy the url link of the article 
+                    <br>Copy the url link of the article
                     <br>Paste the link to the search bar and hit: Analyze content!
                     <br>The article must be in English.
                 </p>
@@ -34,7 +34,29 @@
                 {% if summary %}
                     <h3>Summary</h3>
                     <p>{{summary}}</p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    {% if content_sentiment %}
+                        {% if content_sentiment == "negative" %}
+                            <h4>The overall sentiment of the article is
+                                <b class="negative">{{content_sentiment}}</b>
+                            </h4>
+                        {% endif %}
+                        {% if content_sentiment == "positive" %}
+                            <h4>The overall sentiment of the article is
+                                <b class="positive">{{content_sentiment}}</b>
+                            </h4>
+                        {% endif %}
+                        {% if content_sentiment == "neutral" %}
+                            <h4>The overall sentiment of the article is
+                                <b class="neutral">{{content_sentiment}}</b>
+                            </h4>
+                        {% endif %}
+
+                    {% endif %}
                 {% endif %}
+
                 <br>
                 {% if category and category_score%}
                     <h3>Article Category</h3>
@@ -90,7 +112,9 @@
                 <script>
                     $(document).ready(function () {
                         $("#search").on("submit", function () {
-                            $('#loading').classList.remove("hide");
+                            $('#loading')
+                                .classList
+                                .remove("hide");
                 </script>
 
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">

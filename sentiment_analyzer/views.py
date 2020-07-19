@@ -44,7 +44,6 @@ def main(request):
         args['category_score'] = f"{(args['category_score']*100)}%"
         args['targets'] = response['sentiment']['targets']
         args['content_sentiment'] = response['sentiment']['document']['label']
-        print(json.dumps(response, indent=2))
 
     return render(request, 'index.html', args)
 

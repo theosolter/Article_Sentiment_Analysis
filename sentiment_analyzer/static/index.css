@@ -1,0 +1,76 @@
+
+.ajaxProgress {
+    /*width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    z-index: 99;
+    text-align: center;
+    display: none;
+    padding: 10px;
+    */
+    height: 100vh;
+    width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #0E0A14ef;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 400ms;
+    text-align: center;
+    
+
+}
+
+#loading.hide{
+    display: none;
+
+}
+
+.ajaxProgress h3{
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em;
+    margin-top: 250px;
+    color: #0E0A14ef;
+
+}
+
+.ajaxProgress img{
+
+    margin-bottom: 45px;
+    margin-top: 12px;
+    color: #0E0A14ef;
+
+}
+.ajaxProgress .content{
+    margin-left: auto;
+    margin-right: auto;
+    width: 24em;
+    background-color: white;
+    border-radius: 16px;
+
+}
+
+#div1 video{
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    flex-direction: column;
+}
+
+
+.negative{
+    color: red;
+}
+
+.neutral{
+    color: rgba(255, 217, 0, 0.979);
+}
+
+.positive{
+    color: green;
+}

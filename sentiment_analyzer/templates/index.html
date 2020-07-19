@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'fa/css/all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'index.css' %}">
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <title>News sentiment analyzer and summarizer</title>
+        <link rel="stylesheet" href="{% static 'index.css' %}">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="jumbotron" id="div1">
+                <h1 class="display-4">This is the "News sentiment analyzer and summarizer" using IBM's Watson API
+                    <i class="fas fa-globe-americas"></i>
+                </h1>
+                <p>Please select an article from the internet.
+                    <br>Copy the url link of the article 
+                    <br>Paste the link to the search bar and hit: Analyze content!
+                    <br>The article must be in English.
+                </p>
+                <form id="search" method="get" action="">
+                    <input type="text" name="q" placeholder="Search" value="{{ request.GET.q }}"/>
+                    <input type="submit" id="submit" class="btn btn-primary" value="Analyze content"/>
+                </form>
+                <br>
+                {% if summary %}
+                    <h3>Summary</h3>
+                    <p>{{summary}}</p>
+                {% endif %}
+                <br>
+                {% if category and category_score%}
+                    <h3>Article Category</h3>
+                    <p>We are
+                        {{ category_score }}
+                        sure that the article has to do with{{ category }}
+                    </p>
+                {% endif %}
+                <br>
+                {% if targets %}
+                    <h3>List of important keywords and their sentiment label</h3>
+                    {% for target in targets %}
+                        <ul>
+                            {% if target.label == "negative" %}
+                                <li>Keyword
+                                    <b>{{ target.text }}</b>
+                                    has a
+                                    <b class="negative">{{ target.label }}</b>
+                                    sentiment</li>
+                            {% endif %}
+                            {% if target.label == "positive" %}
+                                <li>Keyword
+                                    <b>{{ target.text }}</b>
+                                    has a
+                                    <b class="positive">{{ target.label }}</b>
+                                    sentiment</li>
+                            {% endif %}
+                            {% if target.label == "neutral" %}
+                                <li>Keyword
+                                    <b>{{ target.text }}</b>
+                                    has a
+                                    <b class="neutral">{{ target.label }}</b>
+                                    sentiment</li>
+                            {% endif %}
+                        </ul>
+
+                    {% endfor %}
+                {% endif %}
+                <p></p>
+                <p></p>
+                <p></p>
+                <hr class="my-4">
+
+                <div id="loading" class="hide">
+                    <div class="ajaxProgress">
+                        <div class="content">
+                            <h3>Analyzing content...</h3>
+                            <img src="{{ MEDIA_URL }}/static/ajax-loader.gif" alt="loading"/>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        $("#search").on("submit", function () {
+                            $('#loading').classList.remove("hide");
+                </script>
+
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+                <script src="{% static 'loading.js' %}"></script>
+            </body>
+
+        </html>
